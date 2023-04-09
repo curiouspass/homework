@@ -148,3 +148,44 @@ int main() {
 	}
 	else cout << "error";
 }
+
+//第五题 字符串权值和最大
+class A {
+public:
+	char target[10000];
+	int count[26] = {0};
+	void scan(void);
+	int add(void);
+};
+
+void A::scan(void) {
+	for (int i = 0; i < strlen(target);i++) {
+		for (int j = 0; j < 26; j++) {
+			if (target[i] == 97 + j) count[j]++;
+		}
+	}
+	int temp;
+	for (int i = 0; i < 26 - 1; i++)
+		for (int j = 0; j < 26 - 1 - i; j++) {
+			if (count[j] > count[j + 1]) {
+				temp = count[j];
+				count[j] = count[j + 1];
+				count[j + 1] = temp;
+			}
+		}
+}
+
+int A::add(void) {
+	int sum=0;
+	for (int i = 0; i < 26; i++) {
+		sum = sum + A::count[i]*(i+1);
+	}
+	return sum;
+}
+
+int main() {
+	A a1;
+	cin.get(a1.target, 10000);
+	a1.scan();
+	cout << a1.add();
+}
