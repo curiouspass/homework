@@ -62,3 +62,30 @@ int main() {
 	cin >> a1.n;
 	a1.transf(a1.n);
 }
+
+//第三题 今天星期几
+class A {
+public:
+	int y, m, d;
+	void calcu(int y,int m ,int d);
+};
+
+void A::calcu(int y,int m, int d) {
+	int w;
+	if (m == 1)m = 13; if (m == 2)m = 14;
+	w =( y % 100 + (y % 100 / 4) + (y/100 / 4) - 2*(y/100) +
+		(26*(m + 1) / 10) + d - 1)%7;
+	if (w == 0)cout << "Sun";
+	else if (w == 1)cout << "Mon";
+	else if (w == 2)cout << "Tue";
+	else if (w == 3)cout << "Wed";
+	else if (w == 4)cout << "Thu";
+	else if (w == 5)cout << "Fri";
+	else if (w == 6)cout << "Sat";
+}
+
+int main() {
+	A a1;
+	scanf_s("%d-%d-%d", &a1.y, &a1.m, &a1.d);
+	a1.calcu(a1.y, a1.m, a1.d);
+}
