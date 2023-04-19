@@ -1,0 +1,159 @@
+//第一题 找比m大且在附近的回文数
+class Solution {
+public:
+	int find(int& m) {//判断回文数
+		int x = m + 1;
+		int cap[10];
+		int i = 0;
+		while (x > 0) {
+			cap[i] = x % 10;
+			x /= 10;
+			i++;
+		}
+		int dif = 0;
+		for (int k = 0; k < i; k++) {
+			if (cap[k] != cap[i - k - 1])dif++;
+		}
+		m++;
+		if (dif == 0) return m;
+		else return -1;
+	}
+	int m, k;
+};
+
+int main() {
+	int n;
+	cin >> n;
+	Solution s1;
+	for (int i = 0; i < n; i++) {
+		int flag = 0;
+		cin >> s1.m >> s1.k;
+		while (s1.m > 0) {
+			int y = s1.find(s1.m);
+			if (y >= 0) {
+				cout << y << " ";
+				flag++;
+			}
+			if (flag == s1.k) { 
+				cout << endl;
+				break; }
+		}
+	}
+	return 0;
+}
+
+//第二题 求圆的周长面积
+static float pi = 3.14;
+class Solution {
+public:
+	int r;
+	float getarea(void) {
+		return pi * r *r;
+	}
+	float getC(void) {
+		return 2 * pi * r;
+	}
+};
+int main() {
+	Solution s1;
+	cin >> s1.r;
+	cout << "直径=" << 2 * s1.r << endl;
+	cout << "面积=" << s1.getarea() << endl;
+	cout << "周长=" << s1.getC() << endl;
+}
+
+
+//第三题 输入学生姓名成绩并排序
+class solution {
+public:
+	int n ;
+	string name[100];
+	float norscore[100], finalscore[100], allscore[100];
+	void ins(void) {
+		for (int i = 0; i < n;i++) {
+			cin >> name[i];
+			cin >> norscore[i];
+			cin >> finalscore[i];
+		}
+	}
+	void calculate(void) {
+		for (int i = 0; i < n; i++) {
+			allscore[i] = 0.4 * norscore[i] + 0.6 * finalscore[i];
+		}
+	}
+	void collate(void) {
+		for (int i = 0; i < n - 1; i++){
+			for (int j = 0; j < n - 1 - i; j++) {
+				if (allscore[j] < allscore[j + 1]) {
+					float temp1 = allscore[j];
+					float temp2 = norscore[j];
+					float temp3 = finalscore[j];
+					string temp4 = name[j];
+					allscore[j] = allscore[j + 1];
+					allscore[j + 1] = temp1;
+					norscore[j] = norscore[j + 1];
+					norscore[j + 1] = temp2;
+					finalscore[j] = finalscore[j + 1];
+					finalscore[j + 1] = temp3;
+					name[j] = name[j + 1];
+					name[j + 1] = temp4;
+				}
+			}
+		}
+	}
+};
+
+int main() {
+	solution s1;
+	cin >> s1.n;
+	s1.ins();
+	s1.calculate();
+	s1.collate();
+	for (int i = 0; i < s1.n; i++) {
+		cout << s1.name[i] <<" "<< s1.norscore[i]<<" "
+			<< s1.finalscore[i]<<" " << s1.allscore[i] << endl;
+	}
+	return 0;
+}
+
+//第四题 平均数方差
+int main() {
+	int n;
+	cin >> n;
+	int tar[6];
+	for (int i = 0; i < n; i++) {
+		float sum = 0;
+		for (int j = 0; j < 6; j++) {
+			cin >> tar[j];
+			sum += tar[j];
+		}
+		float pingjun = sum / 6.0;
+		float fangcha = (((tar[0] - pingjun)* (tar[0] - pingjun) 
+			+ (tar[1] - pingjun) * (tar[1] - pingjun)
+			+ (tar[2] - pingjun) * (tar[2] - pingjun) 
+			+ (tar[3] - pingjun) * (tar[3] - pingjun) 
+			+ (tar[4] - pingjun) * (tar[4] - pingjun) 
+			+ (tar[5] - pingjun) * (tar[5] - pingjun)) / 6.0);
+		cout << pingjun << " " << fangcha;
+	}
+	return 0;
+}
+
+//第五题 BTC时间转UTC
+int main() {
+	int tar;
+	cin >> tar;
+	if (tar >= 0 && tar <= 2359) {
+		int hour = tar / 100;
+		int minute = tar % 100;
+		if (hour != 0) {
+			if (hour > 8)cout << hour - 8;
+			else if (hour < 8)cout << hour + 24 - 8;
+			
+		}
+		else cout << 16;
+		if (minute < 10)cout << "0";
+		cout << minute;
+	}
+	else cout << "error" << endl;
+}
