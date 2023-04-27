@@ -1,0 +1,21 @@
+class solution {
+public:
+	void cal(int a,int b);
+private:
+};
+void solution::cal(int a,int b) {
+	int yu=a,shang;
+	for (int i = 0; i < 200; i++) {
+		shang = yu * 10 / b;
+		yu = yu * 10 %b ;
+		cout << shang;
+		if (yu == 0)break;
+	}
+}
+int main() {
+	solution s1;
+	int a, b;
+	cin >> a>>b;
+	cout << "0.";
+	s1.cal(a, b);
+}
