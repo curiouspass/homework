@@ -1,0 +1,22 @@
+class solution {
+public:
+	void even();
+private:
+	int n = 0;
+	int sum = 0;
+	int tar[100];
+};
+void solution::even() {
+	for (int i = 0; ; i++) {
+		cin >> tar[i];
+		if (tar[i] <= 0)break;
+		if (tar[i] % 2 != 0) {
+			sum += tar[i];
+		}
+	}
+	cout << sum;
+}
+int main() {
+	solution s1;
+	s1.even();
+}
