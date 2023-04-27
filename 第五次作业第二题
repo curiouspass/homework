@@ -1,0 +1,24 @@
+//求最大公约数和最小公倍数
+class solution {
+public:
+	void gongyue(int a,int b);
+	void gongbei(int a, int b);
+private:
+	int j;
+};
+void solution::gongyue(int a,int b) {
+	for (int i = 1; i <= a; i++) {
+		if (a % i == 0 && b % i == 0)j = i;
+	}
+	cout << j<< " ";
+}
+void solution::gongbei(int a, int b) {
+	cout << (a * b / j);
+}
+int main() {
+	solution s1;
+	int a, b;
+	cin >> a >> b;
+	s1.gongyue(a,b);
+	s1.gongbei(a,b);
+}
