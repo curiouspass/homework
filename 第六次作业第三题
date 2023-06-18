@@ -1,0 +1,23 @@
+#include <string>
+#include <iostream>
+
+class Reversestr {
+public:
+    Reversestr()
+    {
+        std::cin >> str;
+        reverse(str.begin(), str.end());
+        show();
+    }
+    void show()
+    {
+        std::cout << str;
+    }
+private:
+    std::string str;
+};
+int main() 
+{
+    Reversestr t;
+    return 0;
+}
